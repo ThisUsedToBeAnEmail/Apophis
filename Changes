@@ -1,0 +1,32 @@
+Revision history for Apophis
+
+0.06    2026-08-31
+        - Move Apophis.xs to the top of the dist and drop the XSMULTI
+          build, which dlltool could not link on Strawberry.
+        - Pair the stat call with its struct on Windows.
+        - Replace an existing file on rename on Windows.
+
+0.05    2026-08-20
+        - ADDS: a public C ABI, ap_abi.h, reached through
+          ExtUtils::Depends and Apophis::_abi_ptr.
+        - Regenerate ppport.h with Devel::PPPort 3.73. The old copy
+          undef'd perl's STMT_START/STMT_END to force the gcc
+          brace-group form, which is what every XopENTRY_set warned
+          about under clang. 102 warnings, none of them ours.
+
+0.04	2026-07-11
+	- Remove pax headers
+
+0.03    2026-03-29
+        - Fix Windows build failures on threaded Perl (MULTIPLICITY)
+          - Undo perl.h macro overrides for mkdir, stat, unlink on WIN32
+          - Use portable apophis_mkdir wrapper (_mkdir on Windows, mkdir on POSIX)
+          - Use Perl Stat_t typedef for struct stat portability
+          - Conditional unistd.h include with io.h/direct.h fallback on Windows
+        - Fix Makefile.PL to locate Horus include_dir without loading XS bootstrap
+
+0.02    2026-03-27
+        Second CPAN release.
+
+0.01    Date/time
+        First version, released on an unsuspecting world.
